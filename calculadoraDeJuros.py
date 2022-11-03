@@ -4,11 +4,13 @@ from tkinter import ttk
 class calculos:
     @staticmethod
     def calculo_simples():
-        montante=eval(frame.strvar_capital.get()*(f'1+ {frame.strvar_taxa.get()}* {frame.strvar_tempo.get()}'))
+        montante=eval(f'{frame.strvar_capital.get()}* 1+ {frame.strvar_taxa.get()}* {frame.strvar_tempo.get()}')
         return f'Montante: {montante}'
     
     def calculo_composto():
-        montate=eval(frame.strvar_capital.get())
+        montate=eval(f'{frame.strvar_capital.get()}*(1 + {frame.strvar_taxa.get()})**{frame.strvar_tempo.get}')
+        return f'Montante: {montate}'
+ 
 
 class RootMain (tk.Tk):
     def __init__(self):
@@ -19,7 +21,7 @@ class RootMain (tk.Tk):
 
 class FrameMain(ttk.Frame):
     def __init__(self, conteiner):
-        super().__init__(conteiner,width=450,height=270)
+        super().__init__(conteiner,width=450,height=170)
 
         #criando widgts
 
@@ -60,7 +62,7 @@ class FrameMain(ttk.Frame):
 
         self.strvar_tempo=tk.StringVar()
 
-        self.entry_tempo=ttk.Entry(self,width=15,textvariable=strvar_tempo)
+        self.entry_tempo=ttk.Entry(self,width=15,textvariable=self.strvar_tempo)
         self.entry_tempo.place(x=320,y=85)
 
         self.btn_calcular=ttk.Button(self,text='Calcular',width=12)
@@ -69,11 +71,27 @@ class FrameMain(ttk.Frame):
 
         self.grid(row=0,column=0)
 
+class labelFrame(ttk.Labelframe):
+    def __init__(self,container):
+        super().__init__(container)
+
+        #radioButton
+        strSimples=tk.IntVar()
+        self.radioBUtton_simples=ttk.Radiobutton(self,text='Juros simples',value=0,variable=strSimples)
+        self.radioBUtton_simples.grid(row=0,column=0)
+
+
+        self.radioBUtton_composto=ttk.Radiobutton(self,text='Juros Composto',value=0,variable=strSimples)
+        self.radioBUtton_composto.grid(row=0,column=1)
+
+
+        self.grid(column=0,row=1)
     
         
 
 root=RootMain()
 frame=FrameMain(root)
+label=labelFrame(root)
 root.mainloop()
 
 
