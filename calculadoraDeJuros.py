@@ -1,10 +1,19 @@
 import tkinter as tk
 from tkinter import ttk
 
+class calculos:
+    @staticmethod
+    def calculo_simples():
+        montante=eval(frame.strvar_capital.get()*(f'1+ {frame.strvar_taxa.get()}* {frame.strvar_tempo.get()}'))
+        return f'Montante: {montante}'
+    
+    def calculo_composto():
+        montate=eval(frame.strvar_capital.get())
+
 class RootMain (tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry('450x350+650+200')
+        self.geometry('450x250+650+200')
         self.title('Calculadora de juros')
 
 
@@ -14,24 +23,53 @@ class FrameMain(ttk.Frame):
 
         #criando widgts
 
-        lbl_titulo=ttk.Label(self,text='hello',font='Arial 20 bold')
-        lbl_titulo.grid(row=0,column=0,columnspan=2)
+        self.lbl_titulo=ttk.Label(self,text='hello',font='Arial 20 bold')
+        self.lbl_titulo.place(x=150,y=5)
+
+        
+
+
+        self.lbl_capital=ttk.Label(self,text='Capital')
+        self.lbl_capital.place(x=5,y=45)
+
+        self.strvar_capital=tk.StringVar()
+
+        self.entry_capital=ttk.Entry(self,width=15,textvariable=self.strvar_capital)
+        self.entry_capital.place(x=57,y=45)
+        
+
+        self.lbl_juros=ttk.Label(self, text='Juros')
+        self.lbl_juros.place(x=5,y=80)
+        
+        self.strvar_juros=tk.StringVar()
+
+        self.entry_juros=ttk.Entry(self,width=15,textvariable=self.strvar_juros)
+        self.entry_juros.place(x=57,y=80)
+       
+        self.lbl_taxa_juros=ttk.Label(self,text='Taxa de juros')
+        self.lbl_taxa_juros.place(y=45,x=220)
+
+
+        self.strvar_taxa=tk.StringVar()
+
+        self.entry_taxa_juros=ttk.Entry(self,width=15,textvariable=self.strvar_taxa)
+        self.entry_taxa_juros.place(x=320,y=45)
+
+        self.lbl_tempo=ttk.Label(self,text='tempo(meses)')
+        self.lbl_tempo.place(x=215, y=85)
+
+        self.strvar_tempo=tk.StringVar()
+
+        self.entry_tempo=ttk.Entry(self,width=15,textvariable=strvar_tempo)
+        self.entry_tempo.place(x=320,y=85)
+
+        self.btn_calcular=ttk.Button(self,text='Calcular',width=12)
+        self.btn_calcular.place(x=180,y=125)
+        
 
         self.grid(row=0,column=0)
 
-
-        lbl_capital=ttk.Label(self,text='Capital')
-        lbl_capital.grid(row=1,column=0,pady=10)
-
-        entry_capital=ttk.Entry(self)
-        entry_capital.grid(row=1,column=1,pady=10)
-
-        lbl_juros=ttk.Label(self, text='Juros')
-        lbl_juros.grid(row=2,column=0,pady=10)
-
-        entry_juros=ttk.Entry(self)
-        entry_juros.grid(row=2,column=1)
-        
+    
         
 
 root=RootMain()
