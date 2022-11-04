@@ -73,19 +73,29 @@ class FrameMain(ttk.Frame):
 
 class labelFrame(ttk.Labelframe):
     def __init__(self,container):
-        super().__init__(container)
+        super().__init__(container,text='options')
 
         #radioButton
-        strSimples=tk.IntVar()
-        self.radioBUtton_simples=ttk.Radiobutton(self,text='Juros simples',value=0,variable=strSimples)
+        self.strSimples=tk.StringVar()
+        self.radioBUtton_simples=ttk.Radiobutton(self,text='Juros simples',value='1',variable=self.strSimples)
         self.radioBUtton_simples.grid(row=0,column=0)
 
 
-        self.radioBUtton_composto=ttk.Radiobutton(self,text='Juros Composto',value=0,variable=strSimples)
+        self.radioBUtton_composto=ttk.Radiobutton(self,text='Juros Composto',value='0',variable=self.strSimples)
         self.radioBUtton_composto.grid(row=0,column=1)
 
 
         self.grid(column=0,row=1)
+
+        self.chamar()
+
+    def chamar(self):
+        if self.strSimples.get()=='0':
+            frame.btn_calcular.config(command=lambda:calculos.calculo_composto)
+        else:
+            frame.btn_calcular.config(command=lambda:calculos.calculo_simples)
+
+
     
         
 
