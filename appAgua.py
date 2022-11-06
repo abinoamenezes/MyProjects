@@ -8,8 +8,9 @@ def calculo_água(event):
     qtd= eval(f'{peso}*0.035')
     showinfo(
         title='Aviso',
-        message=f'Sua quantidade de aguá diaria tem que ser de {qtd:.1f} Litros. Ingira {} copos de 200ml'
+        #message=f'Sua quantidade de aguá diaria tem que ser de {qtd:.1f} Litros. Ingira {} copos de 200ml'
     )
+    
 
 
 root=Tk()
