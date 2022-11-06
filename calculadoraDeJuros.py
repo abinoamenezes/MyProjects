@@ -4,8 +4,8 @@ from tkinter import ttk
 class calculos:
     @staticmethod
     def calculo_simples():
-        montante=eval(f'{frame.strvar_capital.get()}* 1+ {frame.strvar_taxa.get()}* {frame.strvar_tempo.get()}')
-        return f'Montante: {montante}'
+        frame.lbl_respostas.config(text=eval(f'{frame.strvar_capital.get()}* 1+ {frame.strvar_taxa.get()}* {frame.strvar_tempo.get()}'))
+        
     
     def calculo_composto():
         montate=eval(f'{frame.strvar_capital.get()}*(1 + {frame.strvar_taxa.get()})**{frame.strvar_tempo.get}')
@@ -69,6 +69,9 @@ class FrameMain(ttk.Frame):
         self.btn_calcular.place(x=180,y=125)
         
 
+        self.lbl_respostas=ttk.Label(self)
+        self.lbl_respostas.place(x=100,y=125)
+
         self.grid(row=0,column=0)
 
 class labelFrame(ttk.Labelframe):
@@ -77,23 +80,31 @@ class labelFrame(ttk.Labelframe):
 
         #radioButton
         self.strSimples=tk.StringVar()
-        self.radioBUtton_simples=ttk.Radiobutton(self,text='Juros simples',value='1',variable=self.strSimples)
+        self.radioBUtton_simples=ttk.Radiobutton(
+            self,
+            text='Juros simples'
+            ,value='0'
+            ,variable=self.strSimples,
+            command=self.chamar
+            )
         self.radioBUtton_simples.grid(row=0,column=0)
 
 
-        self.radioBUtton_composto=ttk.Radiobutton(self,text='Juros Composto',value='0',variable=self.strSimples)
+        self.radioBUtton_composto=ttk.Radiobutton(self,text='Juros Composto',value='1',variable=self.strSimples,command=self.chamar)
         self.radioBUtton_composto.grid(row=0,column=1)
 
 
         self.grid(column=0,row=1)
 
-        self.chamar()
+
 
     def chamar(self):
         if self.strSimples.get()=='0':
-            frame.btn_calcular.config(command=lambda:calculos.calculo_composto)
+            frame.btn_calcular.config(command=calculos.calculo_simples)
+            
+            
         else:
-            frame.btn_calcular.config(command=lambda:calculos.calculo_simples)
+            frame.btn_calcular.config(command=calculos.calculo_composto)
 
 
     
