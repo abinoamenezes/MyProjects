@@ -2,18 +2,22 @@ import tkinter as tk
 from tkinter import ttk
 
 def adicionar():
+    
     jan=tk.Tk()
     jan.geometry('400x200+750+120')
     lbl=ttk.Label(jan,text='Digite aqui os registros(separados por virgulas)')
     lbl.place(x=0,y=5)
-    
-    entry_dados=ttk.Entry(jan,width=35)
+    strvar=tk.StringVar()
+    entry_dados=ttk.Entry(jan,width=35,textvariable=strvar)
     entry_dados.place(x=0,y=25)
-    entry_dados.bind('<Return>',adicionar2)
+    def adicionar2():
+        jan.destroy()
+    btn_confirma=ttk.Button(jan,text='confirmar',command=adicionar2)
+    btn_confirma.focus()
+    btn_confirma.place(x=10,y=49)
     jan.mainloop()
 
-    def adicionar2(event):
-        jan.quit()
+   
         
     
 
