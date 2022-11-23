@@ -4,7 +4,7 @@ from tkinter import ttk
 
 root=tk.Tk()
 root.title('Gerador de senhas')
-root.geometry('600x400+950+200')
+root.geometry('570x350+950+200')
 root.config(bg='#ADD8E6')
 
 label_text=ttk.Label(root,text='Crie sua senha', font='Arial 20',background='#ADD8E6')
@@ -45,6 +45,6 @@ btn_cara_sim.place(x=320,y=190)
 btn_cara_nao.place(x=413,y=190)
 
 btn_gerar=ttk.Button(root,text='Gerar senha')
-btn_gerar.place(x=5,y=230)
+btn_gerar.place(x=200,y=260,width=200)
 
 root.mainloop()
